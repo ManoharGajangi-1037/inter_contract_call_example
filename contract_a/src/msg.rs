@@ -7,5 +7,5 @@ pub struct InstantiateMsg {}
 #[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
     SendMessage { message: String, target: String },
-     ReceiveCall { message: String },
+    ReceiveCall { message: String },
 }
