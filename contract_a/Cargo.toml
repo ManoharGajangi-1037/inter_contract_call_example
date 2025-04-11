@@ -1,0 +1,29 @@
+[package]
+name = "contract_a"
+version = "0.1.0"
+edition = "2021"
+description = "A CosmWasm smart contract"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[package.metadata.scripts]
+optimize = """docker run --rm -v "$(pwd)":/code \
+  --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
+  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
+  cosmwasm/rust-optimizer:0.16.0
+"""
+[dependencies]
+cosmwasm-std.workspace = true
+cosmwasm-schema.workspace = true
+serde.workspace = true
+schemars.workspace = true
+thiserror.workspace = true
+contract_b = { path = "../contract_b" }
+
+[dev-dependencies]
+cosmwasm-schema = { workspace = true }

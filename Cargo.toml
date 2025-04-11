@@ -1,0 +1,22 @@
+[workspace]
+members = ["contract_a", "contract_b"]
+
+resolver = "2"
+
+[workspace.dependencies]
+cosmwasm-std = "2.2.2"
+cosmwasm-schema = "2.2.2"
+serde = { version = "1.0", features = ["derive"] }
+schemars = "0.8.11"
+thiserror = "2.0.12"
+cw-storage-plus = "2.0.0"
+
+[profile.release]
+rpath = false
+lto = true
+overflow-checks = true
+opt-level = 3
+debug = false
+debug-assertions = false
+codegen-units = 1
+panic = 'abort'
